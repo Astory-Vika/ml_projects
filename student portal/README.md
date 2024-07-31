@@ -88,5 +88,5 @@ The **Online Learning Platform** is designed to address the needs of modern educ
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-We hope this platform enhances your learning and teaching experience. For any questions or support, please contact our team at [support@example.com](mailto:viktoriia@astafievai.com). Happy learning!
+We hope this platform enhances your learning and teaching experience. For any questions or support, please contact our team at [viktoriia@astafievai.com](mailto:viktoriia@astafievai.com). Happy learning!
 
