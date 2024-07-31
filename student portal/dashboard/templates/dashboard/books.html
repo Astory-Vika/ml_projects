@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<section class="text-center container my-5">
+    <h2 class="mb-4">Пошук книг та перегляд ваших улюблених</h2>
+    <p class="lead">Введіть запит для отримання результатів пошуку</p>
+    <form action="{% url 'books' %}" method="post" class="mb-5">
+        {% csrf_token %}
+        <div class="input-group mb-3 justify-content-center">
+            {{ form }}
+            <div class="input-group-append ms-2">
+                <button class="btn btn-primary" type="submit">Шукати</button>
+            </div>
+        </div>
+    </form>
+
+    <h3>{{input}}</h3>
+    <h4></h4>{%for result in results %}
+    <a href={{result.preview}} target="_blank">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src={{result.thumbnail}} alt="">
+
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="p-0 m-0">{{result.title}}</h3>
+                        <b>
+                            <u>
+                                {% if result.subtitle %}
+                                <h5 class="p-0 m-0">{{result.subtitle}}</h5>
+                                {% endif %}
+                            </u>
+                        </b>
+                        {% if result.description %}
+                        <h6 class="p-0 m-1">{{result.description}}</h6>
+                        {%endif %}
+                        <b> {% if result.categories %}
+                            <h6 class="ml-0 mt-3">Категорія:
+                                {% for category in result.categories %}{{category}}{%endfor%}</h6>
+                            {% endif %}
+                            {% if result.count %}
+                            <h6 class="ml-0 mt-1">Сторінки: {{result.count}}</h6>
+                            {% endif %}
+                            {% if result.rating %}
+                            <h6 class="ml-0 mt-1">Рейтинг: {{result.rating}}</h6>
+                            {% endif %}
+                        </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <br>
+    {% endfor %}
+
+</section>
+
+{% endblock content %}

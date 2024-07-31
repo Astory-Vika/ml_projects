@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Результати тесту</h2>
+  {% if feedback %}
+    <h3>Фідбек</h3>
+    {% for question_id, question_text, answer_status, feedback_text, book_text, book_url in feedback %}
+      <div class="mb-3">
+        <p><strong>Питання:</strong> {{ question_text }}</p>
+        <p><strong>Фідбек:</strong> {{ answer_status }}</p>
+        {% if book_text %}
+          <p><strong>Рекомендована література:</strong> <a href="{{ book_url }}" target="_blank">{{ book_text }}</a></p>
+        <a href="{% url 'books' %}?text={{ book_text }}">Перейти до книг</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>Помилок немає! Відмінно!</p>
+  {% endif %}
+  
+</div>
+{% endblock %}

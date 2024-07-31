@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %} {% load static %}
+{% load crispy_forms_tags%}
+{% block content %}
+
+<div class="container">
+    <form method="POST">
+    {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Додати нотатки</legend>
+                {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" href="" type="submit">
+                Додати
+            </button>
+        </div>
+    </form>
+</div>
+
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Назва предмета</th>
+                <th>Нотатки</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.subject_title }}</td>
+                <td>
+
+                </td>
+                <td></td>
+            </tr>
+            {% for note in notes %}
+            <tr>
+              {% if subject.subject_id == note.subject_id%}
+                <td></td>
+                <td><a href="{% url 'notes_detail' note.id %}">
+                    Заголовок: {{note.title}} - Опис: {{note.description}}</a></td>
+                <td><div class="card-footer mt-auto "><a href="{% url 'delete-note' note.id%}"><i
+                                class="fa fa-trash fa-2x"></i></a></div></td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+<!--
+<div class="container">
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-3">
+            <a href="{% url 'notes_detail' note.id %}">
+                <div class="card">
+                    <div class="card-header">{{note.title}}</div>
+                    <div class="card-body">{{note.description|slice:"0:100"}}</div>
+                    <div class="card-footer mt-auto "><a href="{% url 'delete-note' note.id%}"><i
+                                class="fa fa-trash fa-2x"></i></a></div>
+                </div>
+            </a>
+        </div>
+
+        {%endfor%}
+        <br><br>
+
+    </div>
+</div>-->
+
+{% endblock content %}

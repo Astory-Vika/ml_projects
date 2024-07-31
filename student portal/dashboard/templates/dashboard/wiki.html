@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section class="container text-center my-5">
+    <h2 class="mb-4">Пошук статей у Вікіпедії</h2>
+    <p class="lead">Введіть запит для отримання результатів пошуку.</p>
+    <b>Введіть без пробілів</b>
+    <form action="{% url 'wiki' %}" method="post" class="my-4">
+        {% csrf_token %}
+        <div class="input-group mb-3 justify-content-center">
+            {{ form }}
+            <div class="input-group-append ms-2">
+                <button class="btn btn-primary" type="submit">Шукати</button>
+            </div>
+        </div>
+    </form>
+
+    {% if title %}
+    <div class="container">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <a href="{{ link }}" target="_blank" class="text-decoration-none">
+                    <h3 class="card-title">{{ title }}</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ link }}</h6>
+                </a>
+                <hr>
+                <p class="card-text text-justify">{{ details }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    {% if role == 'teacher' %}
+    <h3>Ваші задані завдання:</h3>
+    {% else %}
+    <h3>Назначені завдання:</h3>
+    {% endif %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Опис</th>
+                <th>Термін виконання</th>
+                <th>Дії</th>
+            </tr>
+        </thead> 
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.deadline|date:"d M Y H:i" }}</td>
+                <td>
+                    {% if role == 'student' %}
+                    <a href="{% url 'submit_homework' task.id %}" class="btn btn-primary">Відповісти</a>
+                    {% elif role == 'teacher' %}
+                    <a href="{% url 'view_submissions' task.id %}" class="btn btn-secondary">Переглянути відповіді</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Немає призначених завдань.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if role == 'student' %}
+    <h3>Ваші виконані завдання:</h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Опис</th>
+                <th>Оцінка</th>
+                <th>Коментар</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hw in homeworks %}
+            <tr>
+                <td>{{ hw.title }}</td>
+                <td>{{ hw.description }}</td>
+                <td>{{ hw.grade }}</td>
+                <td>{{ hw.gradedescription }}</td>
+                <td>
+                    <a href="{% url 'test_view' hw.id %}" class="btn btn-primary">Пройти тест</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Немає виконаних завдань.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

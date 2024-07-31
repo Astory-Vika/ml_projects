@@ -1,0 +1,23 @@
+{% extends 'dashboard/base.html' %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Оцінювання домашнього завдання</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="grade" class="form-label">Оцінка</label>
+            {{ form.grade|crispy }}
+        </div>
+        <div class="mb-3">
+            <label for="gradedescription" class="form-label">Коментар</label>
+            {{ form.gradedescription|crispy }}
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+            <a href="{% url 'view_submissions' submission.task.id %}" class="btn btn-secondary">Назад до відповідей</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

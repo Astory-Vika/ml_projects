@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section class="container text-center my-5">
+    <h2 class="mb-4">Пошук відео на YouTube</h2>
+    <p class="lead">Шукайте та відтворюйте необхідні відео на YouTube безпосередньо з нашої платформи.</p>
+    <div class="youtube">
+    <form action="{% url 'youtube' %}" method="post" class="mb-5">
+        {% csrf_token %}
+        <div class="input-group mb-3 justify-content-center">
+            {{ form }}
+            <div class="input-group-append ms-2">
+                <button class="btn btn-primary align-middle" type="submit">Шукати</button>
+            </div>
+    </form>
+    </div>
+    </div>
+
+    <div class="row">
+        {% for result in results|slice:":6" %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <a href="{{ result.link }}" target="_blank" class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ result.thumbnail }}" class="card-img-top" alt="Thumbnail for {{ result.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ result.title }}</h5>
+                        <p class="card-text"><small class="text-muted">{{ result.channel }}</small></p>
+                        <p class="card-text"><small class="text-muted">{{ result.description }}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <span class="me-3"><i class="far fa-clock"></i> {{ result.duration }}</span>
+                            <span class="me-3"><i class="far fa-eye"></i> {{ result.views }}</span>
+                            <span><i class="far fa-calendar-alt"></i> {{ result.published }}</span>
+                        </small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}

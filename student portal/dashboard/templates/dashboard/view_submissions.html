@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <!-- Plotly graph integration -->
+    <div id="chart">
+        {{ chart|safe }}
+    </div>
+    <h3>Відповіді студентів на завдання: {{ task.title }}</h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 15%;">Студент</th>
+                <th style="width: 37%;">Відповідь</th>
+                <th style="width: 10%;">Дата подання</th>
+                <th style="width: 10%;">Дедлайн</th>
+                <th style="width: 2%;">Оцінка</th>
+                <th style="width: 10%;">Дія</th>
+                <th style="width: 10%;">Аналіз</th>
+                <th style="width: 5%;">Відповідає тематиці</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+            <tr>
+                <td>{{ submission.user.get_full_name }}</td>
+                <td>{{ submission.description }}</td>
+                <td>{{ submission.submission_date|date:"d M Y H:i" }}</td>
+                <td>{{ submission.task.deadline|date:"d M Y H:i" }}</td>  <!-- Відображення дедлайну -->
+                <td>
+                    {% if submission.grade %}
+                    {{ submission.grade }}
+                    {% else %}
+                    Не оцінено
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not submission.grade %}
+                    <a href="{% url 'grade_homework' submission.id %}" class="btn btn-primary">Оцінити</a>
+                    {% else %}
+                    Оцінено
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="homework_id" value="{{ submission.id }}">
+                        <button type="submit" class="btn btn-primary">Аналізувати</button>
+                    </form>
+                </td>
+                <td>
+                    {% if submission.is_relevant %}
+                    Так
+                    {% else %}
+                    Ні
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Немає відповідей.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if submissions %}
+    <h4 class="mt-4">Результати аналізу:</h4>
+    <div class="list-group">
+        {% for submission in submissions %}
+            {% if submission.summary %}
+            <div class="list-group-item">
+                <h5>Студент: {{ submission.user.get_full_name }}</h5>
+                <p><strong>Скорочення:</strong> {{ submission.summary }}</p>
+                <p><strong>Відповідає тематиці:</strong> {% if submission.is_relevant %}Так{% else %}Ні{% endif %}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+<div></div>
+<br><br>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block content %}
+
+<div class="schedule-container">
+    <h1 class="schedule-title">Розклад занять для {{ user.first_name }} {{ user.last_name }}</h1>
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>День тижня</th>
+                <th>Номер заняття</th>
+                <th>Предмет</th>
+                {% if role == 'teacher' %}
+                <th>Група</th>
+                {% else %}
+                <th>Викладач</th> 
+                {% endif %}
+                <th>Коментар</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+            <tr>
+                <td>{{ schedule.day_of_week }}</td>
+                <td>{{ schedule.class_num }}</td>
+                <td>{{ schedule.teaching_assignments.subject.title }}</td>
+                {% if role == 'teacher' %}
+                <td>{{ schedule.teaching_assignments.group.title }}</td>
+                {% else %}
+                <td>{{ schedule.teaching_assignments.teacher.first_name }} {{ schedule.teaching_assignments.teacher.last_name }}</td>
+                {% endif %}
+                <td>{{ schedule.comment }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No classes scheduled.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
