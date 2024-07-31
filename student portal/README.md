@@ -57,12 +57,26 @@ The **Online Learning Platform** is designed to address the needs of modern educ
    ```bash
    Copy code
    npm install
-
 3. Configure environment variables:
-Create a .env file and add necessary configurations (e.g., database connection strings, API keys).
+   Create a .env file and add necessary configurations (e.g., database connection strings, API keys).
 
-4.Start the development server:
+4. Start the development server:
    ```bash
    Copy code
    npm start
 
+##Usage
+**For Students
+**Sign Up/Login: Create an account or log in with your credentials.
+**Dashboard: Access your personalized dashboard to view courses, schedules, and assignments.
+**Learning Modules: Engage with adaptive learning modules tailored to your needs.
+**Submit Assignments: Upload your homework and track your progress.
+**Feedback: Receive personalized feedback and recommendations for improvement.
+For Teachers
+Sign Up/Login: Create an account or log in with your credentials.
+Manage Courses: Create and manage courses, upload materials, and set assignments.
+Track Progress: Monitor student progress and provide feedback.
+Adaptive Content: Utilize AI tools to personalize learning materials for students.
+For Administrators
+Sign Up/Login: Create an account or log in with your credentials.
+System Management: Oversee platform operations, manage users, and maintain security.
