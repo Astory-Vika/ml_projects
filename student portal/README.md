@@ -54,14 +54,12 @@ The **Online Learning Platform** is designed to address the needs of modern educ
    cd online-learning-platform
 2. Install dependencies:
    ```bash
-   Copy code
    npm install
 3. Configure environment variables:
    Create a .env file and add necessary configurations (e.g., database connection strings, API keys).
 
 4. Start the development server:
    ```bash
-   Copy code
    npm start
 
 ## Usage
