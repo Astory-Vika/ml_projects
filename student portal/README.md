@@ -65,18 +65,24 @@ The **Online Learning Platform** is designed to address the needs of modern educ
    Copy code
    npm start
 
-##Usage
-**For Students
-**Sign Up/Login: Create an account or log in with your credentials.
-**Dashboard: Access your personalized dashboard to view courses, schedules, and assignments.
-**Learning Modules: Engage with adaptive learning modules tailored to your needs.
-**Submit Assignments: Upload your homework and track your progress.
-**Feedback: Receive personalized feedback and recommendations for improvement.
-For Teachers
-Sign Up/Login: Create an account or log in with your credentials.
-Manage Courses: Create and manage courses, upload materials, and set assignments.
-Track Progress: Monitor student progress and provide feedback.
-Adaptive Content: Utilize AI tools to personalize learning materials for students.
-For Administrators
-Sign Up/Login: Create an account or log in with your credentials.
-System Management: Oversee platform operations, manage users, and maintain security.
+## Usage
+
+### For Students
+
+1. **Sign Up/Login**: Create an account or log in with your credentials.
+2. **Dashboard**: Access your personalized dashboard to view courses, schedules, and assignments.
+3. **Learning Modules**: Engage with adaptive learning modules tailored to your needs.
+4. **Submit Assignments**: Upload your homework and track your progress.
+5. **Feedback**: Receive personalized feedback and recommendations for improvement.
+
+### For Teachers
+
+1. **Sign Up/Login**: Create an account or log in with your credentials.
+2. **Manage Courses**: Create and manage courses, upload materials, and set assignments.
+3. **Track Progress**: Monitor student progress and provide feedback.
+4. **Adaptive Content**: Utilize AI tools to personalize learning materials for students.
+
+### For Administrators
+
+1. **Sign Up/Login**: Create an account or log in with your credentials.
+2. **System Management**: Oversee platform operations, manage users, and maintain security.
