@@ -10,8 +10,7 @@ Welcome to the **Online Learning Platform** project repository! This project aim
 3. [Technologies Used](#technologies-used)
 4. [Installation](#installation)
 5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [License](#license)
+6. [License](#license)
 
 ## Project Overview
 
@@ -86,3 +85,10 @@ The **Online Learning Platform** is designed to address the needs of modern educ
 
 1. **Sign Up/Login**: Create an account or log in with your credentials.
 2. **System Management**: Oversee platform operations, manage users, and maintain security.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+We hope this platform enhances your learning and teaching experience. For any questions or support, please contact our team at [support@example.com](mailto:viktoriia@astafievai.com). Happy learning!
+
